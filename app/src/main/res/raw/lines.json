@@ -1,0 +1,107 @@
+[
+  {
+    "origin": "Centro",
+    "target": "Jardim Adamantina",
+    "start": "08:00",
+    "end": "09:00",
+    "interval": "15 minutos"
+  },
+  {
+    "origin": "Centro",
+    "target": "Vila Industrial",
+    "start": "08:30",
+    "end": "09:30",
+    "interval": "20 minutos"
+  },
+  {
+    "origin": "Terminal",
+    "target": "Campus",
+    "start": "07:00",
+    "end": "08:00",
+    "interval": "10 minutos"
+  },
+  {
+    "origin": "Rodoviária",
+    "target": "Centro",
+    "start": "09:00",
+    "end": "10:00",
+    "interval": "30 minutos"
+  },
+  {
+    "origin": "Centro",
+    "target": "Parque dos Lagos",
+    "start": "10:00",
+    "end": "11:00",
+    "interval": "25 minutos"
+  },
+  {
+    "origin": "Jardim Adamantina",
+    "target": "Centro",
+    "start": "11:00",
+    "end": "12:00",
+    "interval": "15 minutos"
+  },
+  {
+    "origin": "Campus",
+    "target": "Centro",
+    "start": "12:00",
+    "end": "13:00",
+    "interval": "10 minutos"
+  },
+  {
+    "origin": "Centro",
+    "target": "Rodoviária",
+    "start": "13:00",
+    "end": "14:00",
+    "interval": "20 minutos"
+  },
+  {
+    "origin": "Vila Industrial",
+    "target": "Centro",
+    "start": "14:00",
+    "end": "15:00",
+    "interval": "15 minutos"
+  },
+  {
+    "origin": "Centro",
+    "target": "Hospital",
+    "start": "15:00",
+    "end": "16:00",
+    "interval": "10 minutos"
+  },
+  {
+    "origin": "Hospital",
+    "target": "Centro",
+    "start": "16:00",
+    "end": "17:00",
+    "interval": "10 minutos"
+  },
+  {
+    "origin": "Centro",
+    "target": "Distrito Industrial",
+    "start": "17:00",
+    "end": "18:00",
+    "interval": "30 minutos"
+  },
+  {
+    "origin": "Distrito Industrial",
+    "target": "Centro",
+    "start": "18:00",
+    "end": "19:00",
+    "interval": "30 minutos"
+  },
+  {
+    "origin": "Centro",
+    "target": "Parque Universitário",
+    "start": "19:00",
+    "end": "20:00",
+    "interval": "20 minutos"
+  },
+  {
+    "origin": "Parque Universitário",
+    "target": "Centro",
+    "start": "20:00",
+    "end": "21:00",
+    "interval": "20 minutos"
+  }
+]
