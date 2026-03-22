@@ -1,9 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Splash theme. -->
+    <style name="Splash.Theme.Atividade_1_SEM" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+
+    </style>
+
     <!-- Base application theme. -->
     <style name="Base.Theme.Atividade_1_SEM" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.Atividade_1_SEM" parent="Base.Theme.Atividade_1_SEM" />
+    <style name="Theme.Atividade_1_SEM" parent="Splash.Theme.Atividade_1_SEM" />
 </resources>
