@@ -6,4 +6,11 @@ public class Line {
     public String start;
     public String end;
     public String interval;
+    public Coord originCoords;
+    public Coord targetCoords;
+
+    public static class Coord {
+        public double lat;
+        public double lon;
+    }
 }
