@@ -41,11 +41,12 @@ public class MapFragment extends Fragment {
 
     private Marker busMarker;
 
+    private MyLocationNewOverlay locationOverlay;
+
     private String origin, target, start, end, interval;
     private GeoPoint originGeo, targetGeo;
 
-    private boolean isOriginToTarget = true;
-
+    private boolean isOriginToTarget;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -59,14 +60,13 @@ public class MapFragment extends Fragment {
 
         checkLocationPermission();
         initializeMap();
+        setupUserLocation();
 
         binding.buttonCancel.setOnClickListener(v -> navigateToList());
 
         Bundle args = getArguments();
         if (args != null && args.containsKey("origin")) {
             setupRoute(args);
-        } else {
-            setupUserLocation();
         }
     }
 
@@ -88,6 +88,24 @@ public class MapFragment extends Fragment {
                 requireContext().getSharedPreferences("osmdroid", 0)
         );
         binding.map.setMultiTouchControls(true);
+    }
+
+    private void setupUserLocation() {
+        locationOverlay = new MyLocationNewOverlay(
+            new GpsMyLocationProvider(requireContext()),
+            binding.map
+        );
+
+        locationOverlay.enableMyLocation();
+
+        binding.map.getOverlays().add(locationOverlay);
+
+        binding.buttonMyLocation.setOnClickListener(v -> {
+            GeoPoint myLocation = locationOverlay.getMyLocation();
+            if (myLocation != null) {
+                binding.map.getController().animateTo(myLocation);
+            }
+        });
     }
 
     private void setupRoute(Bundle args) {
@@ -227,13 +245,14 @@ public class MapFragment extends Fragment {
             long diff = calNow.getTimeInMillis() - calStart.getTimeInMillis();
             long passedMinutes = diff / (1000 * 60);
 
+            isOriginToTarget = (passedMinutes / intervalMin) % 2 == 0;
+
             long mod = passedMinutes % intervalMin;
             long nextBus = intervalMin - mod;
 
             if (nextBus == intervalMin) {
                 binding.textTime.setText("Ônibus passando agora");
                 binding.textTime.setTextColor(Color.GREEN);
-                isOriginToTarget = !isOriginToTarget;
             } else {
                 binding.textTime.setText("Próximo ônibus em " + nextBus + " min");
 
@@ -288,11 +307,16 @@ public class MapFragment extends Fragment {
 
             if (originToTargetIndex == -1) return;
 
-            int currentSize = isOriginToTarget ? originToTargetIndex + 1 : routePoints.size();
+            int currentSize = isOriginToTarget
+                    ? originToTargetIndex + 1
+                    : routePoints.size() - (originToTargetIndex + 1);
 
             int index = (int) (progress * currentSize);
 
             if (index >= currentSize) index = currentSize - 1;
+
+            if (!isOriginToTarget)
+                index = index + originToTargetIndex;
 
             GeoPoint position = routePoints.get(index);
 
@@ -346,7 +370,6 @@ public class MapFragment extends Fragment {
         return R * c;
     }
 
-
     private void addMarkers(String originName, GeoPoint origin, String targetName, GeoPoint target) {
         Marker m1 = new Marker(binding.map);
         m1.setPosition(origin);
@@ -358,28 +381,6 @@ public class MapFragment extends Fragment {
 
         binding.map.getOverlays().add(m1);
         binding.map.getOverlays().add(m2);
-    }
-
-    private void setupUserLocation() {
-        MyLocationNewOverlay locationOverlay = new MyLocationNewOverlay(
-                new GpsMyLocationProvider(requireContext()),
-                binding.map
-        );
-
-        locationOverlay.enableMyLocation();
-        locationOverlay.enableFollowLocation();
-
-        binding.map.getOverlays().add(locationOverlay);
-
-        locationOverlay.runOnFirstFix(() -> {
-            requireActivity().runOnUiThread(() -> {
-                GeoPoint userLocation = locationOverlay.getMyLocation();
-                if (userLocation != null) {
-                    binding.map.getController().setZoom(15.0);
-                    binding.map.getController().setCenter(userLocation);
-                }
-            });
-        });
     }
 
     @Override

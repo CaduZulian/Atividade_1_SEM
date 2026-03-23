@@ -100,8 +100,24 @@
         android:layout_marginTop="24dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/divider2" />
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        app:layout_constraintVertical_bias="0.0">
+
+    </org.osmdroid.views.MapView>
+
+    <ImageButton
+        android:id="@+id/buttonMyLocation"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="@android:color/white"
+        android:elevation="4dp"
+        android:padding="8dp"
+        android:src="@android:drawable/ic_menu_mylocation"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
@@ -129,10 +145,10 @@
             android:text="Calculando..."
             android:textAlignment="center"
             android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@id/buttonCancel"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/buttonConfirm"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/buttonCancel"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/buttonConfirm"
