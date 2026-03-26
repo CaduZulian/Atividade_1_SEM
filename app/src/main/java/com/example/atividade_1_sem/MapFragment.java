@@ -210,7 +210,7 @@ public class MapFragment extends Fragment {
                 updateBusTime();
                 updateBusPosition();
 
-                handler.postDelayed(this, 1000);
+                handler.postDelayed(this, 15000);
             }
         };
 
