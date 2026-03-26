@@ -220,8 +220,8 @@ public class MapFragment extends Fragment {
     private void updateBusTime() {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
 
-            Date now = new Date();
             Date startTime = sdf.parse(start);
             Date endTime = sdf.parse(end);
 
@@ -233,7 +233,9 @@ public class MapFragment extends Fragment {
             calEnd.setTime(endTime);
 
             calStart.set(calNow.get(Calendar.YEAR), calNow.get(Calendar.MONTH), calNow.get(Calendar.DAY_OF_MONTH));
-            calEnd.set(calNow.get(Calendar.YEAR), calNow.get(Calendar.MONTH), calNow.get(Calendar.DAY_OF_MONTH));
+
+            int dayOffset = startTime.getTime() >= endTime.getTime() ? 1 : 0;
+            calEnd.set(calNow.get(Calendar.YEAR), calNow.get(Calendar.MONTH), calNow.get(Calendar.DAY_OF_MONTH) + dayOffset);
 
             if (calNow.before(calStart) || calNow.after(calEnd)) {
                 binding.textTime.setText("Fora de operação");
@@ -271,8 +273,8 @@ public class MapFragment extends Fragment {
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+            sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
 
-            Date now = new Date();
             Date startTime = sdf.parse(start);
             Date endTime = sdf.parse(end);
 
@@ -284,7 +286,9 @@ public class MapFragment extends Fragment {
             calEnd.setTime(endTime);
 
             calStart.set(calNow.get(Calendar.YEAR), calNow.get(Calendar.MONTH), calNow.get(Calendar.DAY_OF_MONTH));
-            calEnd.set(calNow.get(Calendar.YEAR), calNow.get(Calendar.MONTH), calNow.get(Calendar.DAY_OF_MONTH));
+
+            int dayOffset = startTime.getTime() >= endTime.getTime() ? 1 : 0;
+            calEnd.set(calNow.get(Calendar.YEAR), calNow.get(Calendar.MONTH), calNow.get(Calendar.DAY_OF_MONTH) + dayOffset);
 
             if (calNow.before(calStart) || calNow.after(calEnd)) {
                 busMarker.setVisible(false);

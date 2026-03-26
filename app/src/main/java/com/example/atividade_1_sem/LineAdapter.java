@@ -3,7 +3,11 @@ package com.example.atividade_1_sem;
 import android.content.Context;
 import android.view.*;
 import android.widget.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class LineAdapter extends BaseAdapter {
 
@@ -44,7 +48,20 @@ public class LineAdapter extends BaseAdapter {
         TextView subtitle = view.findViewById(R.id.subtitle);
 
         title.setText(line.origin + " - " + line.target);
-        subtitle.setText("Início: " + line.start +
+
+        String displayStart = line.start;
+        try {
+            SimpleDateFormat sdfInput = new SimpleDateFormat("HH:mm", Locale.getDefault());
+            sdfInput.setTimeZone(TimeZone.getTimeZone("UTC"));
+            Date date = sdfInput.parse(line.start);
+
+            SimpleDateFormat sdfOutput = new SimpleDateFormat("HH:mm", Locale.getDefault());
+            displayStart = sdfOutput.format(date);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        subtitle.setText("Início: " + displayStart +
                 "    Intervalo: " + line.interval);
 
         return view;
