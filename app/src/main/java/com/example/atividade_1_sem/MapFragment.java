@@ -30,6 +30,9 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+
 public class MapFragment extends Fragment {
 
     private FragmentMapBinding binding;
@@ -88,6 +91,20 @@ public class MapFragment extends Fragment {
                 requireContext().getSharedPreferences("osmdroid", 0)
         );
         binding.map.setMultiTouchControls(true);
+        binding.map.setBuiltInZoomControls(true);
+
+        if ((getResources().getConfiguration().uiMode & android.content.res.Configuration.UI_MODE_NIGHT_MASK)
+                == android.content.res.Configuration.UI_MODE_NIGHT_YES) {
+
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.set(new float[] {
+                    -1.0f, 0f, 0f, 0f, 255f,
+                    0f, -1.0f, 0f, 0f, 255f,
+                    0f, 0f, -1.0f, 0f, 255f,
+                    0f, 0f, 0f, 1.0f, 0f
+            });
+            binding.map.getOverlayManager().getTilesOverlay().setColorFilter(new ColorMatrixColorFilter(matrix));
+        }
     }
 
     private void setupUserLocation() {
@@ -210,7 +227,7 @@ public class MapFragment extends Fragment {
                 updateBusTime();
                 updateBusPosition();
 
-                handler.postDelayed(this, 15000);
+                handler.postDelayed(this, 60000);
             }
         };
 

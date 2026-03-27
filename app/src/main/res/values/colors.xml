@@ -7,4 +7,7 @@
     <color name="text_dark">#FF111111</color>
     <color name="text_dark_400">#FF606060</color>
     <color name="layout_neutral_400">#FFD9D9D9</color>
+
+    <color name="icon_tint">#FF111111</color>
+    <color name="icon_tint_inverted">#FFF1F1F1</color>
 </resources>

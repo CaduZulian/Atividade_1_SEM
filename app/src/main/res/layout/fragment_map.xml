@@ -112,12 +112,13 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_margin="16dp"
-        android:background="@android:color/white"
+        android:background="?attr/colorSurface"
         android:elevation="4dp"
         android:padding="8dp"
         android:src="@android:drawable/ic_menu_mylocation"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/icon_tint" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
