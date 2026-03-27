@@ -121,6 +121,7 @@ public class MapFragment extends Fragment {
             GeoPoint myLocation = locationOverlay.getMyLocation();
             if (myLocation != null) {
                 binding.map.getController().animateTo(myLocation);
+                binding.map.getController().setZoom(15.0);
             }
         });
     }
@@ -277,7 +278,7 @@ public class MapFragment extends Fragment {
 
                 if (nextBus <= 5) binding.textTime.setTextColor(Color.RED);
                 else if (nextBus <= 10) binding.textTime.setTextColor(Color.parseColor("#FFA500"));
-                else binding.textTime.setTextColor(Color.BLACK);
+                else binding.textTime.setTextColor(requireContext().getColor(R.color.icon_tint));
             }
 
         } catch (Exception e) {
