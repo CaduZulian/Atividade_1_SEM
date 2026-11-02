@@ -6,6 +6,10 @@ público, filtrar os trajetos por origem e destino e visualizar no mapa o
 percurso selecionado, com localização do usuário e acompanhamento da posição
 simulada do ônibus.
 
+<div align="center">
+<img src=".github\project-image.png" alt="Vou de Bus"/><br />
+</div>
+
 ## Funcionalidades
 
 - Listagem das linhas de transporte disponíveis;
